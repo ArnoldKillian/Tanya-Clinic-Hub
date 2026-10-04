@@ -7,10 +7,12 @@ const tools = [
   { name: "Outlook", note: "Clinic email", url: "https://outlook.office.com/mail/", color: "#1473e6", icon: "✉" },
   { name: "Teams", note: "Messages & meetings", url: "https://teams.microsoft.com/v2/", color: "#6857d8", icon: "T" },
   { name: "GoHighLevel", note: "Leads & follow-up", url: "https://app.gohighlevel.com/", color: "#ef6a4b", icon: "↗" },
+  { name: "Jane", note: "Appointments & patients", url: "https://dresniellebrooks.janeapp.com/login", color: "#2d8178", icon: "J" },
+  { name: "Mitch 2.0", note: "Clinic AI assistant", url: "http://mac-studio.local:3000", color: "#813b68", icon: "M" },
 ];
 
 const tasks = [
-  { id: "tabs", time: "MORNING", title: "Open your clinic tabs", detail: "TELUS CHR, Outlook, Teams and GoHighLevel", action: "Open all tabs" },
+  { id: "tabs", time: "MORNING", title: "Open your clinic tabs", detail: "CHR, Outlook, Teams, GHL, Jane and Mitch 2.0", action: "Open all tabs" },
   { id: "chr", time: "MIDDAY", title: "Finish your CHR tasks", detail: "Clear today’s assigned and outstanding items", action: "Open TELUS CHR" },
   { id: "calls", time: "MIDDAY", title: "Check missed calls", detail: "Return calls and record the follow-up", action: "Open GoHighLevel" },
 ];
@@ -40,7 +42,7 @@ export default function Home() {
     const key = `tanya-notified-${now.toDateString()}-${hour < 11 ? "morning" : "midday"}`;
     if (localStorage.getItem(key)) return;
     if (hour >= 7 && hour < 11 && !done.includes("tabs")) {
-      new Notification("Good morning, Tanya", { body: "Open TELUS CHR, Outlook, Teams and GoHighLevel." });
+      new Notification("Good morning, Tanya", { body: "Open your clinic apps for the day." });
       localStorage.setItem(key, "yes");
     } else if (hour >= 12 && hour < 16 && (!done.includes("chr") || !done.includes("calls"))) {
       new Notification("Tanya’s midday check-in", { body: "Finish CHR tasks and follow up on missed calls." });
